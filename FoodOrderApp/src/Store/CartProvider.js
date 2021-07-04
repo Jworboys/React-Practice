@@ -1,4 +1,3 @@
-import { update } from 'lodash';
 import { useReducer } from 'react';
 import CartContext from './cart-context';
 
