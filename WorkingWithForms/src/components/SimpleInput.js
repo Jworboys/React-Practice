@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 const SimpleInput = props => {
 	const nameInputRef = useRef();
 	const [enteredName, setEnteredName] = useState('');
+	const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
 
 	const nameInputChangeHandler = event => {
 		setEnteredName(event.target.value);
@@ -10,6 +11,13 @@ const SimpleInput = props => {
 
 	const formSubmissionHandler = event => {
 		event.preventDefault();
+
+		if (enteredName.trim() === '') {
+			setEnteredNameIsValid(false);
+			return;
+		}
+
+		setEnteredNameIsValid(true);
 
 		console.log(enteredName);
 		const enteredValue = nameInputRef.current.value;
@@ -30,6 +38,7 @@ const SimpleInput = props => {
 					onInput={nameInputChangeHandler}
 					value={enteredName}
 				/>
+				<p>Name must not be blank.</p>
 			</div>
 			<div className='form-actions'>
 				<button>Submit</button>
